@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Template</title>
+  <style>
+  	*{
+  		padding: 0px;
+  		margin: 0px;
+  		font-size: 14px;
+  	}
+	img {
+		display: block;
+		margin: 5px;
+		transition-property: src;
+		width: 450px;
+		height: 300px;
+	}
+  	
+  </style>
+  <script src="//cdn.bootcss.com/jquery/1.12.1/jquery.js"></script>
+</head>
+<body>
+	<div>
+		<img lazySrc="src/image/1.jpeg">
+		<img lazySrc="src/image/2.jpeg">
+		<img lazySrc="src/image/3.jpeg">
+		<img lazySrc="src/image/4.jpeg">
+		<img lazySrc="src/image/5.jpeg">
+		<img lazySrc="src/image/6.jpeg">
+		<img lazySrc="src/image/7.jpeg">
+		<img lazySrc="src/image/8.jpeg">
+		<img lazySrc="src/image/9.jpeg">
+		<img lazySrc="src/image/10.jpeg">
+		<img lazySrc="src/image/11.jpeg">
+		<img lazySrc="src/image/12.jpeg">
+		<img lazySrc="src/image/13.jpeg">
+		<img lazySrc="src/image/14.jpeg">
+		<img lazySrc="src/image/15.jpeg">
+		<img lazySrc="src/image/16.jpeg">
+	</div>
+	
+	<script>
+	
+		$('img[lazySrc]').each(function(i, img) {
+			img.src = img.src || 'src/image/default.png';
+		});
+		
+		$(window).scroll(function(e) {
+		
+			/*
+			console.log('***********************')
+			console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());  
+			console.log('浏览器的高度：'+$(window).height());  
+			*/
+			
+			var scrollTop = $(window).scrollTop();
+			
+			$('img').each(function(i, img) {
+				if(img.offsetTop > $(window).scrollTop() - 200 && img.offsetTop < $(window).scrollTop() + $(window).height()) {
+				
+					setTimeout(function() {
+						img.src = img.getAttribute('lazySrc');
+					}, 400);	
+				}
+			});
+		});
+		$(window).trigger('scroll');
+			
+	</script>
+</body>
+</html>
