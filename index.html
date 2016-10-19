@@ -46,8 +46,16 @@
 			img.src = img.src || 'src/image/default.png';
 		});
 		
+		var scrollOffset = 0;
+		f();
 		$(window).scroll(function(e) {
+			if(scrollOffset++ == 10) {
+				scrollOffset = 0;
+				f();
+			}
+		});
 		
+		function f() {
 			/*
 			console.log('***********************')
 			console.log("滚动条到顶部的垂直高度: "+$(document).scrollTop());  
@@ -55,17 +63,17 @@
 			*/
 			
 			var scrollTop = $(window).scrollTop();
+			var browerHeight = $(window).height();
 			
 			$('img').each(function(i, img) {
-				if(img.offsetTop > $(window).scrollTop() - 200 && img.offsetTop < $(window).scrollTop() + $(window).height()) {
+				if(img.offsetTop > scrollTop - 200 && img.offsetTop < scrollTop + browerHeight) {
 				
 					setTimeout(function() {
 						img.src = img.getAttribute('lazySrc');
 					}, 400);	
 				}
 			});
-		});
-		$(window).trigger('scroll');
+		}
 			
 	</script>
 </body>
