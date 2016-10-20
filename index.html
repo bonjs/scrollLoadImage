@@ -12,10 +12,8 @@
 	img {
 		display: block;
 		margin: 5px;
-		transition-property: src;
 		width: 450px;
 		height: 300px;
-		border: 1px red solid;
 	}
   	
   </style>
@@ -75,9 +73,8 @@
 				
 				$('img[lazySrc]').each(function(i, img) {
 					if(img.offsetTop > scrollTop - $(img).height() && img.offsetTop < scrollTop + browerHeight) {
-						//alert(img.offsetTop);
 						img.src = img.getAttribute('lazySrc');
-						img.removeAttribute('lazysrc');
+						img.removeAttribute('lazySrc');
 					}
 				});
 			}
