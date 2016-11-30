@@ -75,7 +75,7 @@
 				var browerHeight = $(window).height();
 				
 				$(me).each(function(i, img) {
-					if($(img).offset.top > scrollTop - $(img).height() && $(img).offset.top < scrollTop + browerHeight) {
+					if($(img).offset().top > scrollTop - $(img).height() && $(img).offset().top < scrollTop + browerHeight) {
 						img.src = img.getAttribute('lazySrc');
 						//img.removeAttribute('lazySrc');
 					}
