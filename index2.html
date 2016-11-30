@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Template</title>
+  <style>
+  	*{
+  		padding: 0px;
+  		margin: 0px;
+  		font-size: 14px;
+  	}
+	img {
+		float:left;
+		display: block;
+		margin: 5px;
+		width: 450px;
+		height: 300px;
+	}
+  	
+  </style>
+  <script src="//cdn.bootcss.com/jquery/1.12.1/jquery.js"></script>
+</head>
+<body>
+	<div id=test style="width: 1200px">
+		<img lazySrc="src/image/1.jpeg">
+		<img lazySrc="src/image/2.jpeg">
+		<img lazySrc="src/image/3.jpeg">
+		<img lazySrc="src/image/4.jpeg">
+		<img lazySrc="src/image/5.jpeg">
+		<img lazySrc="src/image/6.jpeg">
+		<img lazySrc="src/image/7.jpeg">
+		<img lazySrc="src/image/8.jpeg">
+		<img lazySrc="src/image/9.jpeg">
+		<img lazySrc="src/image/10.jpeg">
+		<img lazySrc="src/image/11.jpeg">
+		<img lazySrc="src/image/12.jpeg">
+		<img lazySrc="src/image/13.jpeg">
+		<img lazySrc="src/image/14.jpeg">
+		<img lazySrc="src/image/15.jpeg">
+		<img lazySrc="src/image/16.jpeg">
+	</div>
+	
+	<script>
+	
+	
+		$.fn.lazyLoad = function(opt) {
+			
+			$.extend(opt, {
+				defaultImage: 'src/image/default.png'
+			});
+		
+			var me = this;
+			$(this).each(function(i, img) {
+				img.src = img.src || 'src/image/default.png';
+			});
+			
+			var scrollOffset = 0;
+			$(window).scroll(function(e) {
+				if(scrollOffset == 0) {
+					fillImage();
+				}
+				
+				scrollOffset ++;
+				if(scrollOffset == 10) {
+					scrollOffset = 0;
+				}
+			});
+			if(scrollOffset == 0) {
+				fillImage();
+			}
+			
+			function fillImage() {
+			
+				var scrollTop = $(document).scrollTop();
+				var browerHeight = $(window).height();
+				
+				$(me).each(function(i, img) {
+					if($(img).offset.top > scrollTop - $(img).height() && $(img).offset.top < scrollTop + browerHeight) {
+						img.src = img.getAttribute('lazySrc');
+						//img.removeAttribute('lazySrc');
+					}
+				});
+			};
+		}
+		
+		$(function() {
+			$('#test img').lazyLoad({
+			
+			});
+		});
+		
+		
+		
+			
+	</script>
+</body>
+</html>

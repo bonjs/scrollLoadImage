@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Template</title>
+  <style>
+  	
+  	
+  </style>
+  <script src="//cdn.bootcss.com/jquery/1.12.1/jquery.js"></script>
+</head>
+<body>
+	<form action="http://baidu.com" method="post">
+		<input name="username" />
+		<button>submit</button>
+	</form>
+	<iframe>
+	<script>
+		$.ajax({
+			async : false,
+			url : 'data.json',
+			type : "GET",
+			dataType : 'jsonp',
+			jsonpCallback : 'getData',
+			
+			timeout : 5000,
+			beforeSend : function () {
+				
+			},
+			success : function (json, a, b) { 
+				console.log(json);
+			},
+			complete : function (XMLHttpRequest, textStatus) {
+				
+			},
+			error : function (xhr) {
+				alert('fdsafdsafdsa');
+			}
+		});
+	
+	</script>
+</body>
+</html>
